@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import Container from "react-bootstrap/Container";
 
 import Navbar from "./components/Navbar";
@@ -16,11 +21,14 @@ function App() {
       <Header></Header>
       <Container>
         <Switch>
-          <Route path="/">
-            <Search />
+          <Route exact path="/">
+            <Redirect to="/search" />
           </Route>
           <Route path="/saved">
             <Saved />
+          </Route>
+          <Route path="/search">
+            <Search />
           </Route>
         </Switch>
       </Container>
