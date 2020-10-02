@@ -4,7 +4,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import BookItem from "./BookItem";
 
 const BookList = (props) => {
-  const { books } = props;
+  const books = props.books;
 
   return (
     <ListGroup variant="flush">

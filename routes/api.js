@@ -15,18 +15,34 @@ const Book = require("../models/Book");
 
 router.get("/books", (req, res) => {
   // TODO: Fetch books from DB
-  res.json([]);
+  Book.find((err, results) => {
+    if (err) {
+      res.json([]);
+    } else {
+      res.json(results);
+    }
+  });
 });
 
-router.post("/books", ({ body }, res) => {
-  // TODO: Save book to DB
-  res.json(body);
+router.post("/books", (req, res) => {
+  const book = req.body;
+
+  Book.create(book, (err, createdBook) => {
+    if (err) {
+      console.log(err);
+      res.json({ error: "Could not create book" });
+    } else {
+      res.json(createdBook);
+    }
+  });
 });
 
 router.delete("/books/:id", (req, res) => {
   const id = req.params.id;
-  // TODO: Fetch books from DB
-  res.json({ id });
+
+  // https://mongoosejs.com/docs/queries.html
+
+  res.json({});
 });
 
 module.exports = router;
