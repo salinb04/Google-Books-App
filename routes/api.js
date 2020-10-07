@@ -39,6 +39,13 @@ router.post("/books", (req, res) => {
 
 router.delete("/books/:id", (req, res) => {
   const id = req.params.id;
+  Book.findByIdAndDelete(id, (err, docs) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("Deleted : ", docs);
+    }
+  });
 
   // https://mongoosejs.com/docs/queries.html
 
