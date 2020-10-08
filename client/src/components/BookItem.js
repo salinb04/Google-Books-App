@@ -14,7 +14,12 @@ import ListGroup from "react-bootstrap/ListGroup";
 */
 
 const BookItem = (props) => {
-  const { book } = props;
+  const { book, saveBook, deleteBook } = props;
+
+  const isSaved = book._id;
+  const onClick = () => {
+    isSaved ? deleteBook(book._id) : saveBook(book);
+  };
 
   return (
     <ListGroup.Item>
@@ -25,7 +30,7 @@ const BookItem = (props) => {
       <a href={book.link}>
         <button>View</button>
       </a>
-      <button>Save</button>
+      <button onClick={onClick}>{isSaved ? "Delete" : "Save"}</button>
     </ListGroup.Item>
   );
 };

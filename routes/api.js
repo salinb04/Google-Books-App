@@ -14,7 +14,6 @@ const Book = require("../models/Book");
 */
 
 router.get("/books", (req, res) => {
-  // TODO: Fetch books from DB
   Book.find((err, results) => {
     if (err) {
       res.json([]);
@@ -46,8 +45,6 @@ router.delete("/books/:id", (req, res) => {
       console.log("Deleted : ", docs);
     }
   });
-
-  // https://mongoosejs.com/docs/queries.html
 
   res.json({});
 });

@@ -30,6 +30,18 @@ const Search = () => {
   const onChange = (e) => setQuery(e.target.value);
 
   // TODO: onSavedClick -> save book to db
+  const onSaveBook = (book) => {
+    fetch("/api/books", {
+      method: "POST",
+      body: JSON.stringify(book),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((result) => result.json())
+      .then((result) => console.log(result))
+      .catch((err) => console.log(err));
+  };
 
   const fetchBooks = () => {
     if (query !== "") {
@@ -48,7 +60,7 @@ const Search = () => {
     <>
       <h1>Search</h1>
       <input onChange={onChange} value={query} />
-      <BookList books={books} />
+      <BookList books={books} saveBook={onSaveBook} />
     </>
   );
 };

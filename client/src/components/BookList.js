@@ -5,11 +5,18 @@ import BookItem from "./BookItem";
 
 const BookList = (props) => {
   const books = props.books;
+  const saveBook = props.saveBook;
+  const deleteBook = props.deleteBook;
 
   return (
     <ListGroup variant="flush">
       {books.map((book) => (
-        <BookItem key={book} book={book} />
+        <BookItem
+          key={book.title + book.description.length}
+          book={book}
+          saveBook={saveBook}
+          deleteBook={deleteBook}
+        />
       ))}
     </ListGroup>
   );
